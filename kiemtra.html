@@ -1,0 +1,118 @@
+<!-- Phan Nhật Anh
+21062571
+DHTMDT17D
+Ca: Thứ 5, tiết 13-15-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="anh_move.css">
+<script src="LT web/script.js"></script>
+</head>
+<body>
+<div class="wrapper">
+<div class="image">
+<img src="banner1.jpg" alt="noithat">
+</div>
+<!--anhl-->
+<div class="image">
+<img src="den7.webp" alt="noithat">
+</div>
+<!--anhl-->
+<div class="image">
+<img src="PHG.jpg" alt="noithat">
+</div>
+<!--anh1-->
+<div class="image">
+<img src="degt2.jpeg" alt="noithat">
+</div>
+<!--anh1-->
+<div class="image">
+<img src="kexe.jpg" alt="noithat">
+</div>
+<!--anhl-->
+<div class="image"> 
+<img src="denngu.jpg" alt="noithat">
+</div>
+<div class="gallery">
+<i class="fa-regular fa-xmark close"></i>
+<div class="gallery_inner">
+<img src="banner1.jpg" alt="noithat">
+</div>
+<div class="control prev">
+<i class="fa-solid fa-chevron-left"></i>
+</div>
+<div class="control right">
+<i class="fa-solid fa-chevron-right"></i>
+</div>
+</div>
+</div>
+</body>
+ <script>
+   var images = document.querySelectorAll('.image img');
+var prev = document.querySelector('.prev');
+var next = document.querySelector('.right');
+var close = document.querySelector('.close');
+var galleryImg = document.querySelector('.gallery_inner img');
+var gallery = document.querySelector('.gallery');
+
+var currentIndex = 0;
+
+function showGallery() {
+    if (currentIndex === 0) {
+        prev.classList.add('hide');
+    } else {
+        prev.classList.remove('hide');
+        if (currentIndex === images.length - 1) {
+            next.classList.add('hide');
+        } else {
+            next.classList.remove('hide');
+        }
+    }
+
+    updateImage();
+}
+
+
+function updateImage() {
+    galleryImg.src = images[currentIndex].src;
+}
+
+images.forEach((item, index) => {
+    item.addEventListener('click', function () {
+        currentIndex = index;
+        showGallery();
+    });
+});
+
+close.addEventListener('click', function (e) {
+    e.stopPropagation();
+    gallery.classList.remove('show');
+});
+
+document.addEventListener('keydown', function (e) {
+    e.stopPropagation();
+    if (e.keyCode === 27) {
+        gallery.classList.remove('show');
+    }
+});
+
+prev.addEventListener('click', function () {
+    if (currentIndex > 0) {
+        currentIndex--;
+        showGallery();
+    }
+});
+
+next.addEventListener('click', function () {
+    if (currentIndex < images.length - 1) {
+        currentIndex++;
+        showGallery();
+    }
+});
+    </script> 
+</html>
